@@ -1,0 +1,50 @@
+---
+import { product } from '../content/product';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<main id="product" class="overflow-hidden">
+  <section class="mx-auto max-w-[1200px] px-5 pb-20 pt-20 sm:pb-28 sm:pt-28 lg:px-6 lg:pt-36">
+    <div class="enter max-w-3xl">
+      <h1 class="max-w-3xl text-5xl font-normal leading-[1] tracking-[-0.022em] text-white sm:text-6xl lg:text-7xl">为 C/C++ 竞赛编程<br />做好准备。</h1>
+      <p class="mt-7 max-w-xl text-[17px] leading-7 tracking-[-0.01em] text-mist sm:text-xl sm:leading-8">面向 Windows 的自包含编辑器，内置 GCC、clangd、诊断与专用 Runner。</p>
+      <a class="hero-download-button mt-9" href={product.releaseUrl} data-latest-release-download data-release-api={product.releaseApiUrl}><span class="windows-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>下载 Windows 版</span></a>
+    </div>
+    <div class="hero-screenshot-shell enter mx-auto mt-16 w-4/5" style="animation-delay: 90ms"><div class="editor-hero-screenshot relative"><img class="aspect-[2060/1324] w-full rounded-md object-cover" src={`${base}screenshots/editor-runner.png`} alt="BeCoder 编辑器中的 C++ 文件与 Runner 输出" width="2060" height="1324" /><span class="editor-hero-cursor" aria-hidden="true"></span></div></div>
+  </section>
+</main>
+
+<script>
+  const downloadButton = document.querySelector<HTMLAnchorElement>('[data-latest-release-download]');
+
+  if (downloadButton) {
+    let isResolvingRelease = false;
+
+    downloadButton.addEventListener('click', async (event) => {
+      event.preventDefault();
+
+      if (isResolvingRelease) return;
+
+      isResolvingRelease = true;
+      downloadButton.setAttribute('aria-busy', 'true');
+
+      try {
+        const response = await fetch(downloadButton.dataset.releaseApi ?? '');
+        if (!response.ok) throw new Error('Unable to fetch the latest release.');
+
+        const release = (await response.json()) as {
+          assets?: Array<{ name: string; browser_download_url: string }>;
+        };
+        const installer = release.assets?.find((asset) => /^BeCoderSetup.*\.exe$/i.test(asset.name));
+
+        window.location.assign(installer?.browser_download_url ?? downloadButton.href);
+      } catch {
+        window.location.assign(downloadButton.href);
+      } finally {
+        isResolvingRelease = false;
+        downloadButton.removeAttribute('aria-busy');
+      }
+    });
+  }
+</script>

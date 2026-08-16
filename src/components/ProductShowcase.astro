@@ -1,0 +1,9 @@
+---
+import ScreenshotFrame from './ScreenshotFrame.astro';
+import SectionIntro from './SectionIntro.astro';
+const base = import.meta.env.BASE_URL;
+---
+<section class="mx-auto max-w-[1200px] px-5 py-20 lg:px-6 lg:py-28">
+  <SectionIntro eyebrow="THE PRODUCT" title="展示编辑器，而不是抽象插画。" description="BeCoder 的真实产品界面是网站的视觉主体。后续补充真实截图时，将替换这些预留位置。" />
+  <div class="mt-12 grid gap-5 lg:grid-cols-[1.35fr_0.65fr]"><ScreenshotFrame label="EDITOR + RUNNER" title="BeCoder C++ 编辑与 Runner" description="项目提供的真实产品截图。" imageSrc={`${base}screenshots/editor-runner.png`} imageAlt="BeCoder 编辑器和 Runner" /><div class="grid gap-5"><ScreenshotFrame label="EXTENSIONS" title="等待真实 Open VSX 截图" description="Open VSX 与本地 VSIX 安装仍在 BeCoder 的扩展边界内可用。" /><ScreenshotFrame label="MARKDOWN / MERMAID / CODESNAP" title="等待真实辅助能力截图" description="这些能力已经支持，但视觉优先级低于 C/C++ 工作流。" /></div></div>
+</section>

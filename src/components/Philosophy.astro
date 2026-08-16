@@ -1,0 +1,10 @@
+---
+import { philosophy } from '../content/features';
+import SectionIntro from './SectionIntro.astro';
+---
+<section class="mx-auto max-w-[1200px] px-5 py-20 lg:px-6 lg:py-28">
+  <SectionIntro eyebrow="DESIGN PHILOSOPHY" title="所需的一切，就在一处。" description="BeCoder 先准备好环境，同时为用户、用户项目与产品自身划清边界。" />
+  <div class="mt-12 grid divide-y divide-graphite border-y border-graphite lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+    {philosophy.map((item) => <article class="py-7 lg:px-7 lg:py-2 first:lg:pl-0 last:lg:pr-0"><p class="font-mono text-xs text-ash">{item.number}</p><h3 class="mt-8 text-2xl font-normal text-white">{item.title}</h3><p class="mt-2 text-sm text-ash">{item.englishTitle}</p><p class="mt-5 max-w-sm text-sm leading-6 text-mist">{item.description}</p></article>)}
+  </div>
+</section>

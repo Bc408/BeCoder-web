@@ -1,0 +1,7 @@
+---
+import { excludedCapabilities, keptCapabilities } from '../content/features';
+import SectionIntro from './SectionIntro.astro';
+---
+<section class="border-y border-graphite/80 bg-[#0a0b0c]">
+  <div class="mx-auto grid max-w-[1200px] gap-12 px-5 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:px-6 lg:py-28"><SectionIntro eyebrow="FOCUSED BY DESIGN" title="聚焦的编辑器，不需要包揽一切。" description="BeCoder 选择了不同的产品目标。更小的产品表面是有意为之，不代表其他工具不正确。" /><div class="grid gap-5 sm:grid-cols-2"><section class="rounded-xl border border-graphite bg-carbon p-6"><p class="font-mono text-xs text-ash">保留能力 / KEPT</p><ul class="mt-5 space-y-3 text-sm text-mist">{keptCapabilities.map((item) => <li>{item}</li>)}</ul></section><section class="rounded-xl border border-graphite bg-carbon p-6"><p class="font-mono text-xs text-ash">不作为产品能力</p><ul class="mt-5 space-y-3 text-sm text-ash">{excludedCapabilities.map((item) => <li>{item}</li>)}</ul></section></div></div>
+</section>

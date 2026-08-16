@@ -1,0 +1,14 @@
+---
+import { product } from '../content/product';
+---
+
+<footer class="border-t border-graphite">
+  <div class="mx-auto flex max-w-[1200px] flex-col gap-3 px-5 py-8 text-[13px] text-ash sm:flex-row sm:items-center sm:justify-between lg:px-6">
+    <p>&copy; 2026 BeCoder</p>
+    <div class="flex gap-4">
+      <a class="hover:text-mist" href={product.repositoryUrl} target="_blank" rel="noreferrer">GitHub</a>
+      <a class="hover:text-mist" href={product.releasePageUrl} target="_blank" rel="noreferrer">发布版本</a>
+      <span>GPL-3.0-or-later</span>
+    </div>
+  </div>
+</footer>

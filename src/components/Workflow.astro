@@ -1,0 +1,8 @@
+---
+import { workflowSteps } from '../content/features';
+import SectionIntro from './SectionIntro.astro';
+---
+<section class="mx-auto max-w-[1200px] px-5 py-20 lg:px-6 lg:py-28">
+  <SectionIntro eyebrow="THE WORKFLOW" title="让每一次迭代更紧凑。" description="工作流围绕解答 C/C++ 题目时真正重要的动作，而不是围绕宽泛的通用 IDE 界面。" />
+  <ol class="mt-12 grid gap-px overflow-hidden rounded-xl border border-graphite bg-graphite md:grid-cols-5">{workflowSteps.map(([number, title, englishTitle, description]) => <li class="min-h-44 bg-carbon p-5 sm:p-6"><p class="font-mono text-xs text-ash">{number}</p><h3 class="mt-10 text-lg text-white">{title}</h3><p class="mt-2 font-mono text-xs text-ash">{englishTitle}</p><p class="mt-3 text-sm text-ash">{description}</p></li>)}</ol>
+</section>
