@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
-const repositoryName = 'BeCoder-Web';
+const repositoryName = 'BeCoder-web';
 const isGitHubActions = process.env.GITHUB_ACTIONS === 'true';
 
 export default defineConfig({

@@ -3,10 +3,13 @@ import ScreenshotFrame from './ScreenshotFrame.astro';
 import SectionIntro from './SectionIntro.astro';
 const base = import.meta.env.BASE_URL;
 ---
-<section class="border-y border-graphite/80 bg-[#0a0b0c]">
-  <div class="mx-auto max-w-[1200px] px-5 py-20 lg:px-6 lg:py-28">
-    <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center"><SectionIntro eyebrow="BUILT FOR C/C++" title="代码智能，只做该做的事。" description="内置 clangd 提供补全、跳转、悬停、签名帮助、重命名、符号与层级、显式格式化，以及可选的内嵌提示。" /><ScreenshotFrame label="C/C++ INTELLIGENCE" title="等待真实 clangd 截图" description="此处应使用真实的 BeCoder 代码智能界面，不以虚构编辑器 UI 替代。" /></div>
-    <div class="mt-20 grid gap-12 border-t border-graphite pt-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-center"><ScreenshotFrame label="GCC DIAGNOSTICS" title="等待真实诊断截图" description="此处应展示真实的错误与 Problems/诊断界面。可见编辑器错误由内置 GCC 提供。" /><SectionIntro eyebrow="GCC & DIAGNOSTICS" title="让编译器反馈进入工作流。" description="BeCoder 使用内置 GCC 编译并提供可见的 C/C++ 诊断。编译器是准备好的产品环境，而不是另一个前置条件。" /></div>
-    <div class="mt-20 grid gap-12 border-t border-graphite pt-20 lg:grid-cols-[0.9fr_1.1fr] lg:items-center"><SectionIntro eyebrow="BECODER RUNNER" title="编译，运行，继续。" description="Run 与 Run With Input 使用 BeCoder 自己管理的编译运行链路，让源码、输出和直接的编译反馈保持接近。" /><ScreenshotFrame label="BECODER RUNNER" title="编辑器中的 BeCoder Runner" description="项目提供的真实产品截图，展示 C++ 源文件与 Runner 输出。" imageSrc={`${base}screenshots/editor-runner.png`} imageAlt="BeCoder 编辑器中的 C++ 源文件和 Runner 输出" /></div>
+
+<section id="experience" class="section section-surface">
+  <div class="page-shell feature-stack">
+    <div class="feature-overview">
+      <SectionIntro eyebrow="BUILT FOR C/C++" title="少配环境，多写代码" titleBreak={false} description="BeCoder 预置 C/C++ 所需的 GCC、clangd、诊断与 Runner。代码智能保持在该做的范围内，编译与运行也不需要先拼接一套外部工具。" />
+      <div class="experience-points"><article><p>01</p><h3>内置 GCC</h3><span>Bundled GCC</span><p>竞赛需要的 GCC 工具链随 BeCoder 一同提供，并保持在产品目录中，不依赖系统 PATH。</p></article><article><p>02</p><h3>GCC 诊断</h3><span>GCC diagnostics</span><p>使用内置 GCC 为 C/C++ 编辑器提供可见错误；诊断与显式运行分开，反馈直接回到编辑器。</p></article><article><p>03</p><h3>专用 Runner</h3><span>Dedicated Runner</span><p>运行当前 C/C++ 文件，或读取同目录 input；编译、运行和结果集中在 BC 面板。</p></article></div>
+    </div>
+    <div id="runner" class="runner-showcase"><SectionIntro eyebrow="COMPILE · DIAGNOSE · RUN" title="编译、诊断、运行" description="写完就运行，报错就修正，然后继续下一次尝试。BeCoder Runner 管理自己的 C/C++ 编译运行链路；内置 debugger.h 提供轻量 debug(...) 宏入口，方便在竞赛代码中插入调试检查；原生 PowerShell 仍保留给你自己的系统环境。" /><ScreenshotFrame label="COMPILE · DIAGNOSE · RUN" title="BeCoder 编译与运行" description="真实 BeCoder 编辑器、BC Runner 与编译运行结果。" imageSrc={`${base}screenshots/compile-diagnose-run.png`} imageAlt="BeCoder 编辑器中的 C++ 代码、内置 debug 宏和 BC Runner 编译运行结果" imageWidth={2388} imageHeight={1432} priority="primary" /></div>
   </div>
 </section>

@@ -1,0 +1,16 @@
+---
+import { product } from '../content/product';
+
+interface Props {
+  class?: string;
+  label?: string;
+  showWindowsMark?: boolean;
+}
+
+const { class: className = '', label = '下载 BeCoder', showWindowsMark = false } = Astro.props;
+---
+
+<a class:list={['download-link', className]} href={product.latestReleaseUrl} data-latest-download data-release-api={product.releaseApiUrl}>
+  {showWindowsMark && <span class="windows-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>}
+  <span>{label}</span>
+</a>

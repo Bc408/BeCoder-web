@@ -1,7 +1,6 @@
 ---
-import { excludedCapabilities, keptCapabilities } from '../content/features';
 import SectionIntro from './SectionIntro.astro';
+import { excludedCapabilities, keptCapabilities } from '../content/site';
 ---
-<section class="border-y border-graphite/80 bg-[#0a0b0c]">
-  <div class="mx-auto grid max-w-[1200px] gap-12 px-5 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:px-6 lg:py-28"><SectionIntro eyebrow="FOCUSED BY DESIGN" title="聚焦的编辑器，不需要包揽一切。" description="BeCoder 选择了不同的产品目标。更小的产品表面是有意为之，不代表其他工具不正确。" /><div class="grid gap-5 sm:grid-cols-2"><section class="rounded-xl border border-graphite bg-carbon p-6"><p class="font-mono text-xs text-ash">保留能力 / KEPT</p><ul class="mt-5 space-y-3 text-sm text-mist">{keptCapabilities.map((item) => <li>{item}</li>)}</ul></section><section class="rounded-xl border border-graphite bg-carbon p-6"><p class="font-mono text-xs text-ash">不作为产品能力</p><ul class="mt-5 space-y-3 text-sm text-ash">{excludedCapabilities.map((item) => <li>{item}</li>)}</ul></section></div></div>
-</section>
+
+<section id="focus" class="section section-line"><div class="page-shell split-section"><SectionIntro eyebrow="FOCUSED BY DESIGN" title="专门的编辑器，不需要包揽一切" description="当 AI、Chat 与 Agent 不断挤进编辑器，代码、推导和一次次尝试反而容易被忽略。BeCoder 选择不把这些能力带进核心工作流，把注意力还给 coder 最开始的事：读题、思考、亲手写下每一行代码，再让 GCC、clangd 与 Runner 给出直接反馈。" /><div class="capability-columns"><article><p>保留能力 / KEPT</p><ul>{keptCapabilities.map((item) => <li>{item}</li>)}</ul></article><article><p>不作为产品能力</p><ul>{excludedCapabilities.map((item) => <li>{item}</li>)}</ul></article></div></div></section>

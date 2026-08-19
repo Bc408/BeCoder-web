@@ -84,7 +84,7 @@ Linear's design system is a midnight command center built on near-black surfaces
 ### Primary Action Button (Acid Lime)
 **Role:** High-emphasis CTA — the one chromatic button in the system
 
-Background #0ab2f9, text #08090a, border-radius 6px, padding 10px 16px, Inter 14px / weight 510, letter-spacing -0.011em. Sits as the sole filled chromatic element — every other button on the site is neutral.
+Background #e4f222, text #08090a, border-radius 6px, padding 10px 16px, Inter 14px / weight 510, letter-spacing -0.011em. Sits as the sole filled chromatic element — every other button on the site is neutral.
 
 ### Nav Text Button
 **Role:** Top navigation items
@@ -145,7 +145,7 @@ Linear gradient from rgb(8,9,10) at 10% to rgb(208,214,224) at 100% — a subtle
 
 ### Do
 - Use Inter Variable with font-feature-settings 'cv01' on, 'ss03' on, 'zero' on — these alternate glyphs define Linear's typographic identity
-- Use #0ab2f9 exclusively for the single primary action per view — never for decoration, never for secondary buttons
+- Use #e4f222 exclusively for the single primary action per view — never for decoration, never for secondary buttons
 - Set body text at 16px Inter weight 400 with line-height 1.5 — larger reading sizes (17px+ at weight 590) are reserved for body emphasis blocks
 - Use letter-spacing -0.022em at 48px and above — tight tracking is non-negotiable for display type
 - Set card radius to 12px, button radius to 6px, pill radius to 9999px — three radii is the entire radius vocabulary

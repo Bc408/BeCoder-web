@@ -16,13 +16,104 @@ const {
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#08090a" />
     <link rel="icon" href={`${import.meta.env.BASE_URL}brand/favicon.ico`} sizes="any" />
     <title>{title}</title>
+    <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
   <body>
     <slot />
+    <script>
+      const latestDownloadButtons = document.querySelectorAll<HTMLAnchorElement>('[data-latest-download]');
+
+      latestDownloadButtons.forEach((button) => {
+        button.addEventListener('click', async (event) => {
+          event.preventDefault();
+
+          if (button.getAttribute('aria-busy') === 'true') return;
+
+          button.setAttribute('aria-busy', 'true');
+          try {
+            const response = await fetch(button.dataset.releaseApi ?? '');
+            if (!response.ok) throw new Error('Unable to fetch the latest release.');
+
+            const release = (await response.json()) as {
+              assets?: Array<{ name: string; browser_download_url: string }>;
+            };
+            const installer = release.assets?.find((asset) => /\.exe$/i.test(asset.name));
+
+            window.location.assign(installer?.browser_download_url ?? button.href);
+          } catch {
+            window.location.assign(button.href);
+          } finally {
+            button.removeAttribute('aria-busy');
+          }
+        });
+      });
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const focusSelectors = [
+        '.section-intro',
+        '.compare-card',
+        '.screenshot-frame',
+        '.philosophy-grid article',
+        '.experience-points article',
+        '.capability-columns article',
+        '.compact-list li',
+        '.origin-flow',
+        '.open-source-card',
+        '.support-grid-single > div',
+      ];
+      const focusTargets = document.querySelectorAll<HTMLElement>(focusSelectors.join(', '));
+      const focusParents = new Set(
+        document.querySelectorAll<HTMLElement>('.compare-stage, .philosophy-grid, .experience-points, .capability-columns, .compact-list'),
+      );
+
+      focusTargets.forEach((element) => {
+        element.classList.add('focus-reveal');
+        const parent = element.parentElement;
+        if (parent && focusParents.has(parent)) {
+          const index = Array.from(parent.children).indexOf(element);
+          element.style.setProperty('--focus-delay', `${Math.max(index, 0) * 110}ms`);
+        }
+      });
+
+      const showAll = () => focusTargets.forEach((element) => element.classList.add('is-focused'));
+
+      if (reducedMotion || !('IntersectionObserver' in window)) {
+        showAll();
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add('is-focused');
+              observer.unobserve(entry.target);
+            });
+          },
+          { rootMargin: '0px 0px -12% 0px', threshold: 0.12 },
+        );
+        focusTargets.forEach((element) => observer.observe(element));
+      }
+
+      const header = document.querySelector<HTMLElement>('.site-header');
+      let scrollTick = false;
+      const updateHeader = () => {
+        header?.classList.toggle('is-scrolled', window.scrollY > 12);
+        scrollTick = false;
+      };
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (scrollTick) return;
+          scrollTick = true;
+          window.requestAnimationFrame(updateHeader);
+        },
+        { passive: true },
+      );
+      updateHeader();
+    </script>
   </body>
 </html>

@@ -1,15 +1,30 @@
 ---
-interface Props { label: string; title: string; description: string; imageSrc?: string; imageAlt?: string; }
-const { label, title, description, imageSrc, imageAlt = '' } = Astro.props;
+interface Props {
+  label: string;
+  title: string;
+  description: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  priority?: 'primary' | 'secondary';
+}
+
+const { label, title, description, imageSrc, imageAlt = '', imageWidth = 1902, imageHeight = 1386, priority = 'secondary' } = Astro.props;
 ---
-<div class="overflow-hidden rounded-xl border border-graphite bg-carbon p-3 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.015)] sm:p-5">
+
+<figure class:list={['screenshot-frame', priority === 'primary' && 'screenshot-frame-primary']}>
   {imageSrc ? (
-    <img class="aspect-[2060/1324] w-full rounded-md object-cover" src={imageSrc} alt={imageAlt} width="2060" height="1324" />
+    <img src={imageSrc} alt={imageAlt} width={imageWidth} height={imageHeight} loading="lazy" />
   ) : (
-    <div class="flex aspect-[16/10] flex-col justify-between rounded-md border border-dashed border-smoke bg-[#0c0d0e] p-5 sm:p-7">
-      <p class="font-mono text-xs text-ash">需要真实产品截图 / REAL SCREENSHOT REQUIRED</p>
-      <div><p class="font-mono text-xs text-ash">{label}</p><p class="mt-3 text-xl text-mist">{title}</p><p class="mt-2 max-w-md text-sm leading-6 text-ash">{description}</p></div>
-      <span class="h-px w-full bg-graphite"></span>
+    <div class="screenshot-placeholder">
+      <p>REAL BECODER SCREENSHOT</p>
+      <div>
+        <span>{label}</span>
+        <h3>{title}</h3>
+        <figcaption>{description}</figcaption>
+      </div>
+      <i aria-hidden="true"></i>
     </div>
   )}
-</div>
+</figure>
