@@ -7,15 +7,17 @@ interface Props {
   imageAlt?: string;
   imageWidth?: number;
   imageHeight?: number;
+  imageWebpSrcset?: string;
+  imageSizes?: string;
   priority?: 'primary' | 'secondary';
 }
 
-const { label, title, description, imageSrc, imageAlt = '', imageWidth = 1902, imageHeight = 1386, priority = 'secondary' } = Astro.props;
+const { label, title, description, imageSrc, imageAlt = '', imageWidth = 1902, imageHeight = 1386, imageWebpSrcset, imageSizes, priority = 'secondary' } = Astro.props;
 ---
 
 <figure class:list={['screenshot-frame', priority === 'primary' && 'screenshot-frame-primary']}>
   {imageSrc ? (
-    <img src={imageSrc} alt={imageAlt} width={imageWidth} height={imageHeight} loading="lazy" />
+    <picture>{imageWebpSrcset && <source srcset={imageWebpSrcset} sizes={imageSizes} type="image/webp" />}<img src={imageSrc} alt={imageAlt} width={imageWidth} height={imageHeight} loading="eager" decoding="async" sizes={imageSizes} /></picture>
   ) : (
     <div class="screenshot-placeholder">
       <p>REAL BECODER SCREENSHOT</p>

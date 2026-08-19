@@ -14,7 +14,7 @@ const base = import.meta.env.BASE_URL;
     <div class="hero-product enter" style="animation-delay: 100ms">
       <div class="hero-gradient-floor" aria-hidden="true"></div>
       <div class="hero-screenshot-shell">
-        <div class="editor-hero-screenshot"><img src={`${base}screenshots/editor-runner.png`} alt="BeCoder 编辑器中的 C++ 文件与 BeCoder Runner 输出" width="1902" height="1386" /><span class="editor-hero-cursor" aria-hidden="true"></span></div>
+        <div class="editor-hero-screenshot"><picture><source srcset={`${base}screenshots/optimized/editor-runner-768.webp 768w, ${base}screenshots/optimized/editor-runner-1280.webp 1280w, ${base}screenshots/optimized/editor-runner-1902.webp 1902w`} sizes="(max-width: 640px) calc(100vw - 32px), 900px" type="image/webp" /><img src={`${base}screenshots/editor-runner.png`} alt="BeCoder 编辑器中的 C++ 文件与 BeCoder Runner 输出" width="1902" height="1386" loading="eager" decoding="async" fetchpriority="high" sizes="(max-width: 640px) calc(100vw - 32px), 900px" /></picture><span class="editor-hero-cursor" aria-hidden="true"></span></div>
       </div>
     </div>
   </section>

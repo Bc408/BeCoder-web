@@ -10,6 +10,9 @@ const {
   title = 'BeCoder',
   description = '面向竞赛编程的自包含 C/C++ 编辑器。',
 } = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
 ---
 
 <!doctype html>
@@ -18,8 +21,17 @@ const {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#08090a" />
-    <link rel="icon" href={`${import.meta.env.BASE_URL}brand/favicon.ico`} sizes="any" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:site_name" content="BeCoder" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <link rel="icon" href={`${base}favicon.ico`} sizes="any" />
+    <link rel="preload" as="image" type="image/webp" href={`${base}screenshots/optimized/editor-runner-1280.webp`} imagesrcset={`${base}screenshots/optimized/editor-runner-768.webp 768w, ${base}screenshots/optimized/editor-runner-1280.webp 1280w, ${base}screenshots/optimized/editor-runner-1902.webp 1902w`} imagesizes="(max-width: 640px) calc(100vw - 32px), 900px" fetchpriority="high" />
     <title>{title}</title>
     <script is:inline>document.documentElement.classList.add('js');</script>
   </head>
