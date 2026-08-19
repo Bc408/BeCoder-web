@@ -4,7 +4,7 @@ BeCoder 的官方静态产品网站。本仓库用于介绍产品定位、设计
 
 - 网站仓库：[Bc408/BeCoder-web](https://github.com/Bc408/BeCoder-web)
 - BeCoder 桌面编辑器与 Release：[Bc408/BeCoder-IDE](https://github.com/Bc408/BeCoder-IDE)
-- GitHub Pages：<https://bc408.github.io/BeCoder-web/>
+- 官方网站：<https://becoder.tech/>
 
 ## 产品边界
 
@@ -73,7 +73,7 @@ public/
 
 部署工作流位于 `.github/workflows/deploy.yml`：推送到 `main` 后，GitHub Actions 使用 `npm ci` 与 `npm run build`，再将 `dist/` 发布到 GitHub Pages。
 
-仓库首次启用时，在 GitHub 仓库的 Pages 设置中选择 **GitHub Actions** 作为发布来源。`astro.config.mjs` 会在 Actions 环境使用 `/BeCoder-web` 作为站点基路径，本地开发则使用根路径；不要手工修改生成目录后再部署。
+仓库首次启用时，在 GitHub 仓库的 Pages 设置中选择 **GitHub Actions** 作为发布来源。官方域名为 `becoder.tech`，因此 `astro.config.mjs` 使用根路径 `/` 生成资源地址；不要手工修改生成目录后再部署。
 
 ## 许可证与第三方材料
 
